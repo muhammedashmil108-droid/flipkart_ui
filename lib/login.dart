@@ -116,8 +116,25 @@ class _LoginState extends State<Login> {
                     onPressed: () {
                       String username = usernameController.text.trim();
                       String password = passwordController.text.trim();
-
-                      if (username == "ashmil" && password == "1234") {
+                      if (username.isEmpty || password.isEmpty) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              icon: Icon(Icons.error),
+                              title: Text("Please fill given details"),
+                              actions: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text("Ok"),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      } else if (username == "ashmil" && password == "1234") {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
